@@ -1,10 +1,10 @@
-# Autorestart (WIP)
+# Autorestart
 
-`autorestart` is used for autorestarting Go apps in development or staging environments, but you can try to use in production at your own risk.
+`autorestart` is used for autorestarting Go apps in development or staging environments, but you can try to use in production at your own risk. Works well with `go build` and `rsync`.
 It designed to be as lightweight as possible, it does not uses `fsnotify` it just periodically poll `os.Stat(filename)`
 
 Where is `filename` is a self binary by default, but you can setup to watch `tmp/restart.txt` or something else.
-On file change it will run `syscall.Exec(selfbinary)` or you can use restarter `SendSIGUSR2` (useful for grace restart) or write your own.
+On file change it will call `syscall.Exec(selfbinary)` or you can use function `SendSIGUSR2` (useful for grace restart) or write your own.
 
 ## Quick start
 
@@ -61,3 +61,8 @@ func main() {
     http.ListenAndServe(":8080", nil) // for example
 }
 ```
+
+
+## Licence
+
+Apache 2.0
